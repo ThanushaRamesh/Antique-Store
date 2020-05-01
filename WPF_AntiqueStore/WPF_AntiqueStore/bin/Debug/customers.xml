@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <customerId>1671809841</customerId>
+    <itemId>System.Linq.Enumerable+WhereSelectEnumerableIterator`2[WPF_AntiqueStore.Item,System.String]</itemId>
+    <firstName>Edit</firstName>
+    <lastName>Edit</lastName>
+    <eMail>Edit</eMail>
+    <address>Edit</address>
+  </Customer>
+</ArrayOfCustomer>

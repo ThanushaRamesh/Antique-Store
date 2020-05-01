@@ -1,0 +1,143 @@
+﻿<Window x:Class="WPF_AntiqueStore.More_Details"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_AntiqueStore"
+        xmlns:Resx="clr-namespace:WPF_AntiqueStore.Properties"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        Title="More_Deatils" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="183*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width ="464*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#E15546" BorderThickness="0" Margin="0,0,337,0" Grid.ColumnSpan="2"/>
+        <Border Grid.Column="0"  Background="#182335"  BorderThickness="0" Opacity="0.80" Margin="0,0,5.333,-0.333" Grid.Row="1" Height="398" VerticalAlignment="Bottom"/>
+        <Border  Background="#EAE4CC" Opacity="0.50" BorderThickness="0" Margin="252,65,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="0"  Background="#E15546" BorderThickness="0" Grid.ColumnSpan="3" Margin="0,0,0,0" />
+
+        <TextBlock 
+            HorizontalAlignment="Left" 
+            Height="30" Margin="80,0,0,0" 
+            Text="{x:Static Resx:Resources.appTitle}" 
+            TextWrapping="Wrap" 
+            FontSize="28"
+            Foreground="White"
+            FontFamily="file:///d:/Fonts/#Girassol"
+            VerticalAlignment="Center" Grid.Column="01" Width="162" />
+
+        <StackPanel HorizontalAlignment="Left" Height="340" Margin="11,8,0,0" VerticalAlignment="Top" Width="230" Grid.Row="1">
+            <StackPanel  Margin="5,0,0,0"  
+                     Orientation="Vertical"
+                     HorizontalAlignment="Left"
+                     Width="159" Height="34" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap"
+                   Text="Enter customer name to filter list"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                   FontSize="9"
+                   Foreground="White" Height="14"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="Tbx_filter_customer"
+                         Height="18"
+                         TextWrapping="Wrap"
+                         Width="132"                   
+                         ToolTip="Enter part of item name to filter"                         
+                         TextChanged="Tbx_filter_TextChanged"/>
+                    
+                    <TextBlock Text="{Binding Path=Items.Count,ElementName=Lbx_Customers}" FontSize="10" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+        
+            <ListBox Name="Lbx_Customers" HorizontalAlignment="Left" Height="260" Width="220" Margin="5,5,0,0" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,4">
+                                <Run Text="{Binding name}"/>
+                                <LineBreak/>
+                                <Run Text="{Binding customerId}" FontWeight="Bold" />
+                                <LineBreak/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Margin="5,1,0,0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="225" Height="45" Grid.Row="1">
+                <Button x:Name="Btn_Del" Content="Delete"   Style="{StaticResource ResourceKey=Btn_Ctl}" Width="105" Height="31" Click="Btn_Del_Customer_Click"/>
+                <Button x:Name="Btn_Add" Content="Add"   Style="{StaticResource ResourceKey=Btn_Ctl}" Margin="5,0" Width="110" Height="31" Click="Btn_Add_Customer_Click"/>
+        </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel 
+            HorizontalAlignment="Center"
+            Height="311"
+            VerticalAlignment="Top"
+            Width="409" 
+            Margin="0,20,0,0"            
+            DataContext="{Binding ElementName=Lbx_Customers,Path=SelectedItem}" Grid.Column="1" Grid.Row="1"
+            >
+
+            <StackPanel HorizontalAlignment="Center" Margin="0,0,5,15" >
+                <TextBlock Text="{Binding name}" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=Item_Details}" Width="350" VerticalAlignment="Top"/>
+
+                <TextBlock Text="{Binding customerId}" HorizontalAlignment="Right" FontSize="14" />
+            </StackPanel>
+
+            <TextBlock TextWrapping="Wrap"
+                       Text="Customer Details"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Height="25"
+                       Style="{StaticResource ResourceKey=Item_Details}"
+                       FontSize="16"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Customer Id" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <Border BorderThickness="1" BorderBrush="Black">
+                    <TextBlock Text="{Binding customerId}" TextWrapping="Wrap" Width="282"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Item Id" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <Border BorderThickness="1" BorderBrush="Black">
+                    <TextBlock Text="{Binding itemId}" TextWrapping="Wrap" Width="282" />
+                </Border>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Firstname" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <TextBox Text="{Binding firstName}" TextWrapping="Wrap" Width="282"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Lastname" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <TextBox Text="{Binding lastName}" TextWrapping="Wrap" Width="282"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="EMail Id" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <TextBox Text="{Binding eMail}" TextWrapping="Wrap" Width="282"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Address" TextWrapping="Wrap" Width="80" Style="{StaticResource ResourceKey=Item_Details}"/>
+                <TextBox Text="{Binding address}" TextWrapping="Wrap" Width="282" Height="60"/>
+            </StackPanel>         
+
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
